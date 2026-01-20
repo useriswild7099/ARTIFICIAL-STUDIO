@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <title>Projects | Artificial Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cinzel', serif;
+            background-color: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .nav-logo a {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #d4af37;
+            text-decoration: none;
+            letter-spacing: 0.2em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #d4af37;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10rem 4rem 6rem;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .hero-subtitle {
+            font-size: 0.875rem;
+            letter-spacing: 0.4em;
+            color: #d4af37;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #fff 0%, #d4af37 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            max-width: 600px;
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+        }
+        
+        /* Services Grid */
+        .services-section {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        
+        .service-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 1rem;
+            padding: 3rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(212, 175, 55, 0.2);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .service-card p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .service-features {
+            list-style: none;
+        }
+        
+        .service-features li {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .service-features li::before {
+            content: '◈';
+            color: #d4af37;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .cta-section h2 {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.25rem 3rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0a0a0a;
+            background: linear-gradient(135deg, #d4af37, #f4d03f, #d4af37);
+            border: none;
+            border-radius: 0;
+            text-decoration: none;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 4rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        footer p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.1em;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.7rem;
+            }
+            
+            .hero {
+                padding: 8rem 2rem 4rem;
+            }
+            
+            .services-section {
+                padding: 4rem 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-section {
+                padding: 4rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">
+            <a href="index.html">ARTIFICIAL STUDIO</a>
+        </div>
+        <div class="nav-links">
+            <a href="projects.html" class="active">Projects</a>
+            <a href="work.html">Work</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <span class="hero-subtitle">Our Portfolio</span>
+        <h1>Our Projects</h1>
+        <p>Explore our curated collection of groundbreaking projects where artistry meets innovation.</p>
+    </section>
+
+    <section class="services-section">
+        <div class="services-grid">
+            <article class="service-card">
+                <div class="service-number">01</div>
+                <h3>Modern Masculinity, Lifestyle & Social Connectivity</h3>
+                <p>Building platforms that redefine modern identity, community connection, and lifestyle optimization for the evolved individual.</p>
+            </article>
+            
+            <article class="service-card">
+                <div class="service-number">02</div>
+                <h3>Self-Care, Aesthetics & Personal Wellness</h3>
+                <p>Engineering solutions at the intersection of technology and personal transformation—from skincare analytics to mental wellness systems.</p>
+            </article>
+            
+            <article class="service-card">
+                <div class="service-number">03</div>
+                <h3>Longevity, Geriatric Care & Active Aging</h3>
+                <p>Developing AI-driven platforms for healthspan extension, elder care innovation, and active aging solutions that matter.</p>
+            </article>
+            
+            <article class="service-card">
+                <div class="service-number">04</div>
+                <h3>Early Childhood Development & EdTech Innovation</h3>
+                <p>Creating intelligent learning systems that adapt to young minds—personalized education that scales cognitive development.</p>
+            </article>
+            
+            <article class="service-card">
+                <div class="service-number">05</div>
+                <h3>Wealth Preservation & Risk Mitigation Strategies</h3>
+                <p>Building systems for capital protection, portfolio intelligence, and strategic risk management for high-net-worth individuals.</p>
+            </article>
+            
+            <article class="service-card">
+                <div class="service-number">06</div>
+                <h3>Financial Inclusion & Economic Mobility Tools</h3>
+                <p>Engineering platforms that democratize access to financial services and create pathways to economic empowerment.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Elevate Your Vision?</h2>
+        <a href="contact.html" class="cta-button">Start a Project</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Artificial Studio. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

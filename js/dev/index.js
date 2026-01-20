@@ -5528,6 +5528,163 @@ document.addEventListener("DOMContentLoaded", () => {
       "<"
     );
   }
+
+  // ========================================
+  // SCROLL-TRIGGERED ANIMATIONS
+  // Award-Winning Parallax Effects
+  // ========================================
+
+  function initScrollAnimations() {
+    // Wait for loading animation to complete
+    setTimeout(() => {
+      
+      // Reveal animations for elements with data-reveal
+      const revealElements = document.querySelectorAll('[data-reveal]');
+      revealElements.forEach((el, index) => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                el.classList.add('revealed');
+              }, index * 100);
+              observer.unobserve(el);
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(el);
+      });
+
+      // Section title word animations
+      const sectionTitles = document.querySelectorAll('.section-title');
+      sectionTitles.forEach(title => {
+        const words = title.querySelectorAll('.word');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              words.forEach((word, i) => {
+                gsapWithCSS.to(word, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.8,
+                  delay: i * 0.1,
+                  ease: "power3.out"
+                });
+              });
+              observer.unobserve(title);
+            }
+          });
+        }, { threshold: 0.3 });
+        observer.observe(title);
+      });
+
+      // Parallax effect for elements with data-parallax
+      const parallaxElements = document.querySelectorAll('[data-parallax]');
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        parallaxElements.forEach(el => {
+          const speed = parseFloat(el.dataset.parallax) || 0.1;
+          const rect = el.getBoundingClientRect();
+          const centerY = rect.top + rect.height / 2;
+          const windowCenter = window.innerHeight / 2;
+          const offset = (centerY - windowCenter) * speed;
+          el.style.transform = `translateY(${offset}px)`;
+        });
+      });
+
+      // Counter animation for stats
+      const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+      statNumbers.forEach(stat => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const target = parseInt(stat.dataset.count);
+              let current = 0;
+              const increment = target / 60;
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                  stat.textContent = target + '+';
+                  clearInterval(timer);
+                } else {
+                  stat.textContent = Math.floor(current);
+                }
+              }, 30);
+              observer.unobserve(stat);
+            }
+          });
+        }, { threshold: 0.5 });
+        observer.observe(stat);
+      });
+
+      // Timeline animation
+      const timeline = document.querySelector('.timeline');
+      if (timeline) {
+        const timelineObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              timeline.classList.add('revealed');
+              const nodes = timeline.querySelectorAll('.timeline-node');
+              nodes.forEach((node, i) => {
+                setTimeout(() => {
+                  node.classList.add('revealed');
+                }, 300 + i * 200);
+              });
+              timelineObserver.unobserve(timeline);
+            }
+          });
+        }, { threshold: 0.3 });
+        timelineObserver.observe(timeline);
+      }
+
+      // SVG path draw animation
+      const drawPaths = document.querySelectorAll('.draw-path');
+      drawPaths.forEach(path => {
+        const length = path.getTotalLength ? path.getTotalLength() : 200;
+        path.style.strokeDasharray = length;
+        path.style.strokeDashoffset = length;
+      });
+
+      // Portfolio card tilt effect
+      const tiltCards = document.querySelectorAll('[data-tilt]');
+      tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = (y - centerY) / 20;
+          const rotateY = (centerX - x) / 20;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
+      });
+
+      // Decoration path animation
+      const decorationPaths = document.querySelectorAll('.decoration-path');
+      decorationPaths.forEach(path => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              gsapWithCSS.to(path, {
+                strokeDashoffset: 0,
+                duration: 2,
+                ease: "power2.out"
+              });
+              observer.unobserve(path);
+            }
+          });
+        }, { threshold: 0.5 });
+        observer.observe(path);
+      });
+
+    }, 10000); // Wait for loading animation (roughly 10 seconds)
+  }
+
+  // Initialize scroll animations
+  initScrollAnimations();
 });
 const projectsData = [
   {
@@ -5611,3 +5768,4 @@ const projectsData = [
     location: "Echo Pavilion - Portland"
   }
 ];
+

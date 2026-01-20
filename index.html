@@ -5,8 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="assets/img/favicon.ico">
 		<title>Portfolio</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1767856087747"></script>
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1767856087747">
+		<script type="module" crossorigin="" src="./js/dev/index.js"></script>
+		<link rel="stylesheet" href="./css/dev/index.css">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -66,14 +66,15 @@
 				</div>
 				<nav>
 					<div class="links">
-						<a href="#">Index</a>
-						<a href="#">Work</a>
+						<a href="projects.html">Projects</a>
+						<a href="work.html">Work</a>
 					</div>
 					<div class="nav-logo">
+						<a href="index.html">ARTIFICIAL STUDIO</a>
 					</div>
 					<div class="links">
-						<a href="#">About</a>
-						<a href="#">Contact</a>
+						<a href="about.html">About</a>
+						<a href="contact.html">Contact</a>
 					</div>
 				</nav>
 				<div class="banner-img banner-img-1">
@@ -90,6 +91,153 @@
 					<h1>INNOVATION IS THE HIGHEST FORM OF ART</h1>
 				</div>
 			</main>
+
+			<!-- SERVICES SECTION -->
+			<section class="section section-services" id="services">
+				<div class="section-inner">
+					<h2 class="section-title" data-parallax="0.2">
+						<span class="word">What</span>
+						<span class="word">We</span>
+						<span class="word">Create</span>
+					</h2>
+					<div class="services-grid">
+						<!-- AI Solutions -->
+						<article class="service-card" data-reveal>
+							<div class="service-icon">
+								<svg viewBox="0 0 100 100" class="icon-svg">
+									<path class="draw-path" d="M50 10 L50 90 M10 50 L90 50 M25 25 L75 75 M75 25 L25 75" fill="none" stroke="currentColor" stroke-width="2"/>
+									<circle class="pulse-circle" cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="1"/>
+									<circle class="pulse-circle delay" cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="0.5"/>
+								</svg>
+							</div>
+							<h3>AI Solutions</h3>
+							<p>Intelligent systems that learn, adapt, and transform your business operations with cutting-edge machine learning.</p>
+						</article>
+						<!-- Creative Design -->
+						<article class="service-card" data-reveal>
+							<div class="service-icon">
+								<svg viewBox="0 0 100 100" class="icon-svg">
+									<polygon class="morph-shape" points="50,5 95,25 95,75 50,95 5,75 5,25" fill="none" stroke="currentColor" stroke-width="2"/>
+									<polygon class="morph-shape inner" points="50,20 80,35 80,65 50,80 20,65 20,35" fill="none" stroke="currentColor" stroke-width="1"/>
+								</svg>
+							</div>
+							<h3>Creative Design</h3>
+							<p>Visual experiences that captivate and communicate. Award-winning design that sets you apart from the competition.</p>
+						</article>
+						<!-- Development -->
+						<article class="service-card" data-reveal>
+							<div class="service-icon">
+								<svg viewBox="0 0 100 100" class="icon-svg">
+									<path class="draw-path" d="M30 30 L10 50 L30 70" fill="none" stroke="currentColor" stroke-width="2"/>
+									<path class="draw-path" d="M70 30 L90 50 L70 70" fill="none" stroke="currentColor" stroke-width="2"/>
+									<line class="draw-path" x1="60" y1="20" x2="40" y2="80" stroke="currentColor" stroke-width="2"/>
+								</svg>
+							</div>
+							<h3>Development</h3>
+							<p>Robust, scalable applications built with modern technologies. From concept to deployment, we craft digital excellence.</p>
+						</article>
+					</div>
+				</div>
+				<!-- Decorative SVG -->
+				<svg class="section-decoration" viewBox="0 0 200 200" preserveAspectRatio="none">
+					<path class="decoration-path" d="M0,100 Q50,50 100,100 T200,100" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+				</svg>
+			</section>
+
+			<!-- ABOUT SECTION -->
+			<section class="section section-about" id="about">
+				<div class="section-inner about-grid">
+					<div class="about-content" data-parallax="0.3">
+						<h2 class="section-title">
+							<span class="word">We</span>
+							<span class="word">Build</span>
+							<span class="word">Systems</span>
+							<span class="word">That</span>
+							<span class="word">Think</span>
+						</h2>
+						<p class="about-text">Artificial Studio is not an agency. We're architects of intelligent systems—engineering AI-driven platforms that compound value while you sleep.</p>
+						<p class="about-text">The market is flooded with "AI wrappers." We build from first principles—systems that ingest complexity, process context, and output precision.</p>
+					</div>
+					<div class="about-stats">
+						<div class="stat-item" data-reveal>
+							<span class="stat-number">AI</span>
+							<span class="stat-label">Powered Systems</span>
+						</div>
+						<div class="stat-item" data-reveal>
+							<span class="stat-number">0</span>
+							<span class="stat-label">Context Switching</span>
+						</div>
+						<div class="stat-item" data-reveal>
+							<span class="stat-number">∞</span>
+							<span class="stat-label">Signal Precision</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- FEATURED PROJECT: STEADY PULSE AI -->
+			<section class="section section-portfolio" id="portfolio">
+				<h2 class="section-title" data-parallax="0.2">
+					<span class="word">Featured</span>
+					<span class="word">Platform</span>
+				</h2>
+				<div class="portfolio-track">
+					<a href="https://steadypulseai.vercel.app/" target="_blank" class="portfolio-card" data-tilt style="text-decoration: none; cursor: pointer;">
+						<div class="card-image" style="background: linear-gradient(135deg, #030213, #1a0a2e); display: flex; align-items: center; justify-content: center; min-height: 300px;">
+							<div style="text-align: center; padding: 2rem;">
+								<h3 style="font-size: 2rem; background: linear-gradient(135deg, #8B5CF6, #D946EF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">STEADY PULSE AI</h3>
+								<p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 0.2em;">NEURAL NETWORK • DEEP LEARNING</p>
+							</div>
+						</div>
+						<div class="card-content">
+							<h3>LinkedIn Growth Engine</h3>
+							<p>AI-powered content engine for executives. Ghost-writing, daily publishing, and audience growth strategies.</p>
+						</div>
+					</a>
+				</div>
+				<div style="text-align: center; margin-top: 3rem;">
+					<p style="color: rgba(0,0,0,0.6); font-size: 0.85rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.8;">A Complex AI Architecture trained with neural networks and deep learning. Ingests your business DNA and maps it to the algorithm's pulse.</p>
+					<a href="https://steadypulseai.vercel.app/" target="_blank" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #8B5CF6, #D946EF); color: #fff; text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-family: inherit;">Explore the Engine →</a>
+				</div>
+			</section>
+
+			<!-- CONTACT SECTION -->
+			<section class="section section-contact" id="contact">
+				<div class="section-inner">
+					<h2 class="section-title" data-parallax="0.2">
+						<span class="word">Let's</span>
+						<span class="word">Create</span>
+						<span class="word">Together</span>
+					</h2>
+					<div class="contact-cta">
+						<a href="mailto:SteadyPulse.ai@proton.me" class="cta-button" data-magnetic>
+							<span class="cta-text">Start a Project</span>
+							<svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<line x1="5" y1="12" x2="19" y2="12"/>
+								<polyline points="12 5 19 12 12 19"/>
+							</svg>
+						</a>
+					</div>
+					<div class="contact-info">
+						<div class="info-item">
+							<span class="info-label">Email</span>
+							<a href="mailto:SteadyPulse.ai@proton.me">SteadyPulse.ai@proton.me</a>
+						</div>
+						<div class="info-item">
+							<span class="info-label">Phone</span>
+							<a href="tel:+917099580081">+91 7099580081</a>
+						</div>
+					</div>
+					<div class="social-links">
+						<a href="#" class="social-link" data-reveal>Twitter</a>
+						<a href="#" class="social-link" data-reveal>LinkedIn</a>
+					</div>
+				</div>
+				<!-- Footer -->
+				<footer class="site-footer">
+					<p>&copy; 2024 Artificial Studio. All rights reserved.</p>
+				</footer>
+			</section>
 		</div>
 	</body>
 </html>
