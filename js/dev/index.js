@@ -5603,18 +5603,26 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(title);
       });
 
-      // Parallax effect for elements with data-parallax
+      // Parallax effect with requestAnimationFrame throttling
       const parallaxElements = document.querySelectorAll('[data-parallax]');
+      let ticking = false;
+
       window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        parallaxElements.forEach(el => {
-          const speed = parseFloat(el.dataset.parallax) || 0.1;
-          const rect = el.getBoundingClientRect();
-          const centerY = rect.top + rect.height / 2;
-          const windowCenter = window.innerHeight / 2;
-          const offset = (centerY - windowCenter) * speed;
-          el.style.transform = `translateY(${offset}px)`;
-        });
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            parallaxElements.forEach(el => {
+              const speed = parseFloat(el.dataset.parallax) || 0.1;
+              const rect = el.getBoundingClientRect();
+              const centerY = rect.top + rect.height / 2;
+              const windowCenter = window.innerHeight / 2;
+              const offset = (centerY - windowCenter) * speed;
+              el.style.transform = `translateY(${offset}px)`;
+            });
+            ticking = false;
+          });
+          ticking = true;
+        }
       });
 
       // Counter animation for stats
