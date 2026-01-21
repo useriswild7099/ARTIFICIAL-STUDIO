@@ -35,6 +35,18 @@
 				100% { background-position: -200% center; }
 			}
 
+			/* Mobile Optimization for About Text */
+			@media (max-width: 768px) {
+				.about-text-manifesto {
+					animation: none !important;
+					background: linear-gradient(90deg, #e8e8e8, #ffffff) !important;
+					-webkit-background-clip: text !important;
+					background-clip: text !important;
+					-webkit-text-fill-color: transparent !important;
+					text-shadow: none !important;
+				}
+			}
+
 			/* Liquid Chrome Text Effect */
 			/* Plain White Text (Previously Chrome Effect) */
 			.chrome-text {
@@ -129,6 +141,8 @@
 				.robot-corner {
 					height: 50%;
 					opacity: 0.5 !important;
+					mask-image: none !important; /* Remove heavy masking on mobile */
+					-webkit-mask-image: none !important;
 				}
 			}
 		</style>
