@@ -24,6 +24,8 @@ body {
 	-webkit-text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background-color: #000000; /* Full black background */
+	color: #ffffff; /* Ensure text is visible */
 }
 input,
 button,
@@ -305,16 +307,16 @@ nav {
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  background: rgba(227, 227, 219, 0.95);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.95); /* Black background */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* White border */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 nav:hover {
-  background: rgba(227, 227, 219, 1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: #000000; /* Full black hover */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 nav > * {
   flex: 1;
@@ -331,7 +333,7 @@ nav > * {
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   font-weight: 500;
-  color: #000;
+  color: #fff; /* White text */
   transition: opacity 0.3s ease;
 }
 
@@ -342,7 +344,7 @@ nav > * {
   left: 0;
   width: 0%;
   height: 1px;
-  background: #000;
+  background: #fff; /* White underline */
   transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -363,7 +365,7 @@ nav > * {
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.15em;
-  color: #000;
+  color: #fff; /* White logo text */
   text-decoration: none;
   display: block;
   text-align: center;
@@ -398,7 +400,7 @@ nav > * {
 .title h1 {
   position: relative;
   text-transform: uppercase;
-  color: #000;
+  color: #fff; /* White text for black background */
   font-family: "Druk", sans-serif;
   font-weight: 500;
   font-style: italic;
@@ -823,7 +825,7 @@ nav > * {
    PORTFOLIO SECTION
    ======================================== */
 .section-portfolio {
-  background: #f5f5f0;
+  background: #000000;
   padding-top: 6rem;
 }
 
