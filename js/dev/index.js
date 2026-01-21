@@ -5316,7 +5316,12 @@ document.addEventListener("DOMContentLoaded", () => {
     (_, i) => `/assets/img/esd${i + 1}.jpg`
   );
   const getRandomImageSet = () => {
-    const shuffled = [...allImageSources].sort(() => 0.5 - Math.random());
+    // Fisher-Yates shuffle for proper randomization
+    const shuffled = [...allImageSources];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
     return shuffled.slice(0, 9);
   };
   function initializeDynamicContent() {
