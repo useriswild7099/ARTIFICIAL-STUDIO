@@ -5558,17 +5558,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const sectionTitles = document.querySelectorAll('.section-title');
       sectionTitles.forEach(title => {
         const words = title.querySelectorAll('.word');
+        const isSlideFromLeft = title.classList.contains('slide-from-left');
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              words.forEach((word, i) => {
-                gsapWithCSS.to(word, {
+              const animProps = {
                   opacity: 1,
-                  y: 0,
                   duration: 0.8,
-                  delay: i * 0.1,
+                  delay: 0, // dynamic delay set inside loop if needed, but here we can just pass base
                   ease: "power3.out"
-                });
+              };
+              
+              if (isSlideFromLeft) {
+                animProps.x = 0;
+              } else {
+                animProps.y = 0;
+              }
+
+              words.forEach((word, i) => {
+                const props = { ...animProps, delay: i * 0.1 };
+                gsapWithCSS.to(word, props);
               });
               observer.unobserve(title);
             }

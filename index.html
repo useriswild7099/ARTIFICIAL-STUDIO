@@ -4,9 +4,150 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="assets/img/favicon.ico">
-		<title>Portfolio</title>
+		<title>Artificial Studio | The Future Ecosystem</title>
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 		<script type="module" crossorigin="" src="./js/dev/index.js"></script>
 		<link rel="stylesheet" href="./css/dev/index.css">
+		<style>
+			/* Silver Steel Shining Animation for About Section */
+			.about-text-manifesto {
+				font-family: 'Playfair Display', serif;
+				font-size: 1.15rem;
+				line-height: 2;
+				background: linear-gradient(
+					90deg,
+					#a8a8a8 0%,
+					#e8e8e8 25%,
+					#ffffff 50%,
+					#e8e8e8 75%,
+					#a8a8a8 100%
+				);
+				background-size: 200% auto;
+				-webkit-background-clip: text;
+				background-clip: text;
+				-webkit-text-fill-color: transparent;
+				animation: silverShine 4s linear infinite;
+				margin-bottom: 1.5rem;
+				text-shadow: 0 0 30px rgba(200, 200, 200, 0.1);
+			}
+			@keyframes silverShine {
+				0% { background-position: 200% center; }
+				100% { background-position: -200% center; }
+			}
+
+			/* Liquid Chrome Text Effect */
+			.chrome-text {
+				font-family: 'Cinzel', serif;
+				font-weight: 800; /* Bold for the chrome volume */
+				font-style: normal;
+				letter-spacing: -0.06em; /* Very tight for impact */
+				text-transform: uppercase;
+				/* Complex Chrome Gradient with Hard Horizon at 50% */
+				background: linear-gradient(
+					180deg, 
+					#bcc6cc 0%,      /* Soft silver top */
+					#ffffff 45%,     /* Horizon Highlight */
+					#4a4a4a 50%,     /* Hard Horizon Line */
+					#8c8c8c 50.1%,   /* Reflection Start */
+					#eef2f3 100%     /* Bottom Shine */
+				);
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent;
+				position: relative;
+				/* Simulating the bevel/edge */
+				-webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+				/* Outer glow and subtle drop shadow for depth */
+				filter: drop-shadow(0 2px 5px rgba(255, 255, 255, 0.2)) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.8));
+				display: inline-block;
+				line-height: 0.9;
+				padding: 0.1em 0; /* Space for shadows */
+			}
+
+			.chrome-container {
+				position: relative;
+				display: inline-block;
+				margin-right: 0.25em;
+			}
+			
+			.chrome-container:last-child {
+				margin-right: 0;
+			}
+
+			.section-about .section-title {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.5rem;
+				line-height: 1;
+			}
+
+			/* Sparkle interaction */
+			.sparkle {
+				position: absolute;
+				width: 10px;
+				height: 10px;
+				background: white;
+				clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+				filter: blur(1px) brightness(2);
+				opacity: 0;
+				animation: sparkle-anim 4s infinite;
+			}
+
+			@keyframes sparkle-anim {
+				0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+				50% { transform: scale(1) rotate(180deg); opacity: 1; }
+			}
+
+			.section-about .section-title .word {
+				font-family: 'Playfair Display', serif;
+			}
+			
+			.chrome-container {
+				position: relative;
+				display: inline-block;
+				margin-bottom: 2rem;
+			}
+			
+			.sparkle-1 { top: -10%; left: 10%; animation-delay: 0s; }
+			.sparkle-2 { top: 20%; left: 90%; animation-delay: 1s; }
+			.sparkle-3 { top: 80%; left: 40%; animation-delay: 2s; }
+
+			.robot-corner {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				height: 65%;
+				width: auto;
+				max-width: 35vw;
+				object-fit: contain;
+				z-index: 1;
+				pointer-events: none;
+				mask-image: linear-gradient(to top, black 50%, transparent 100%);
+				-webkit-mask-image: linear-gradient(to top, black 80%, transparent 100%);
+				opacity: 0;
+				transform: translateX(50px);
+				transition: all 1s ease-out;
+			}
+			
+			.section-about:hover .robot-corner {
+				opacity: 1;
+				transform: translateX(0);
+			}
+
+			/* Make sure stats are above the robot */
+			.about-stats {
+				position: relative;
+				z-index: 2;
+			}
+			
+			@media (max-width: 768px) {
+				.robot-corner {
+					height: 50%;
+					opacity: 0.5 !important;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<div class="wrapper">
@@ -149,14 +290,21 @@
 				<div class="section-inner about-grid">
 					<div class="about-content" data-parallax="0.3">
 						<h2 class="section-title">
-							<span class="word">We</span>
-							<span class="word">Build</span>
-							<span class="word">Systems</span>
-							<span class="word">That</span>
-							<span class="word">Think</span>
+							<div class="chrome-container">
+								<span class="word chrome-text" data-text="Forging">Forging</span>
+								<div class="sparkle sparkle-1"></div>
+							</div>
+							<div class="chrome-container">
+								<span class="word chrome-text" data-text="Tomorrow's">Tomorrow's</span>
+								<div class="sparkle sparkle-2"></div>
+							</div>
+							<div class="chrome-container">
+								<span class="word chrome-text" data-text="Intelligence">Intelligence</span>
+								<div class="sparkle sparkle-3"></div>
+							</div>
 						</h2>
-						<p class="about-text">Artificial Studio is not an agency. We're architects of intelligent systems—engineering AI-driven platforms that compound value while you sleep.</p>
-						<p class="about-text">The market is flooded with "AI wrappers." We build from first principles—systems that ingest complexity, process context, and output precision.</p>
+						<p class="about-text-manifesto">At Artificial Studio, we transcend the role of a mere parent company or agency. We are the forge of tomorrow's intelligence—visionaries who harness raw computational power and first-principles engineering to birth AI ecosystems that evolve, interconnect, and dominate markets.</p>
+						<p class="about-text-manifesto">In a sea of superficial AI wrappers—hasty veneers slapped onto existing tech—we stand apart. We architect from the ground up: deploying formidable hardware to craft platforms that not only win markets but redefine them. Our systems ingest the chaos of data, distill profound context, and deliver outputs of unerring precision, compounding exponential value in perpetuity, even as the world rests.</p>
 					</div>
 					<div class="about-stats">
 						<div class="stat-item" data-reveal>
@@ -173,11 +321,12 @@
 						</div>
 					</div>
 				</div>
+				<img src="./assets/img/robot_overlay.png" class="robot-corner" alt="AI Robot" data-reveal>
 			</section>
 
 			<!-- FEATURED PROJECT: STEADY PULSE AI -->
 			<section class="section section-portfolio" id="portfolio">
-				<h2 class="section-title" data-parallax="0.2">
+				<h2 class="section-title slide-from-left" data-parallax="0.2">
 					<span class="word">Featured</span>
 					<span class="word">Platform</span>
 				</h2>
@@ -185,7 +334,7 @@
 					<a href="https://steadypulseai.vercel.app/" target="_blank" class="portfolio-card" data-tilt style="text-decoration: none; cursor: pointer;">
 						<div class="card-image" style="background: linear-gradient(135deg, #030213, #1a0a2e); display: flex; align-items: center; justify-content: center; min-height: 300px;">
 							<div style="text-align: center; padding: 2rem;">
-								<h3 style="font-size: 2rem; background: linear-gradient(135deg, #8B5CF6, #D946EF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">STEADY PULSE AI</h3>
+								<img src="assets/img/steadypulse-logo-final.jpg" alt="Steady Pulse AI" style="max-width: 180px; height: auto; margin-bottom: 1.5rem; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
 								<p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 0.2em;">NEURAL NETWORK • DEEP LEARNING</p>
 							</div>
 						</div>
@@ -210,18 +359,19 @@
 						<span class="word">Together</span>
 					</h2>
 					<div class="contact-cta">
-						<a href="mailto:SteadyPulse.ai@proton.me" class="cta-button" data-magnetic>
+						<a href="mailto:tiggaprince403@gmail.com" class="cta-button" data-magnetic>
 							<span class="cta-text">Start a Project</span>
 							<svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 								<line x1="5" y1="12" x2="19" y2="12"/>
 								<polyline points="12 5 19 12 12 19"/>
 							</svg>
 						</a>
+						<p class="cta-email" style="margin-top: 1.5rem; font-family: 'Akkurat Mono', monospace; font-size: 0.8rem; color: rgba(255,255,255,0.6); letter-spacing: 0.1em;">tiggaprince403@gmail.com</p>
 					</div>
 					<div class="contact-info">
 						<div class="info-item">
 							<span class="info-label">Email</span>
-							<a href="mailto:SteadyPulse.ai@proton.me">SteadyPulse.ai@proton.me</a>
+							<a href="mailto:tiggaprince403@gmail.com">tiggaprince403@gmail.com</a>
 						</div>
 						<div class="info-item">
 							<span class="info-label">Phone</span>
@@ -235,7 +385,10 @@
 				</div>
 				<!-- Footer -->
 				<footer class="site-footer">
-					<p>&copy; 2024 Artificial Studio. All rights reserved.</p>
+					<div class="footer-vision">
+						<p class="about-text-manifesto" style="max-width: 800px; margin: 0 auto 3rem; font-size: 1rem;">Our philosophy is rooted in the audacious pursuit of symbiosis: weaving our projects into a seamless ecosystem where each innovation amplifies the others. We don't just compete with the titans of Big Tech—we aspire to eclipse them, building intelligent realms that empower humanity's next leap, where AI isn't a tool, but an ever-growing extension of collective ambition.</p>
+					</div>
+					<p>&copy; 2026 Artificial Studio. All rights reserved.</p>
 				</footer>
 			</section>
 		</div>

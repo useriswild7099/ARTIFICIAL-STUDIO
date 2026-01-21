@@ -590,6 +590,10 @@ nav > * {
   will-change: transform, opacity;
 }
 
+.section-title.slide-from-left .word {
+  transform: translateX(-100%);
+}
+
 /* Section Decoration */
 .section-decoration {
   position: absolute;
