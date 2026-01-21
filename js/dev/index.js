@@ -5473,9 +5473,12 @@ document.addEventListener("DOMContentLoaded", () => {
       duration: 1,
       ease: "hop"
     });
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    
     imagesTimeline.to(".hero-img", {
-      scale: 4,
-      clipPath: "polygon(20% 10%, 80% 10%, 80% 90%, 20% 90%)",
+      scale: isMobile ? 1.2 : 4,
+      clipPath: isMobile ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" : "polygon(20% 10%, 80% 10%, 80% 90%, 20% 90%)",
+      y: isMobile ? 40 : 0, // Move down on mobile to show top text
       duration: 1.5,
       ease: "hop",
       onStart: () => {
@@ -5565,21 +5568,30 @@ document.addEventListener("DOMContentLoaded", () => {
               const animProps = {
                   opacity: 1,
                   duration: 0.8,
-                  delay: 0, // dynamic delay set inside loop if needed, but here we can just pass base
+                  delay: 0,
                   ease: "power3.out"
               };
               
               if (isSlideFromLeft) {
-                animProps.x = 0;
+                animProps.x = "0%";
               } else {
-                animProps.y = 0;
+                animProps.y = "0%";
               }
 
               words.forEach((word, i) => {
                 const props = { ...animProps, delay: i * 0.1 };
                 gsapWithCSS.to(word, props);
               });
-              observer.unobserve(title);
+              // Removed observer.unobserve(title) to allow re-triggering
+            } else {
+              // Reset state when out of view
+              words.forEach(word => {
+                if (isSlideFromLeft) {
+                  gsapWithCSS.set(word, { opacity: 0, x: "-100%", y: "0%" });
+                } else {
+                  gsapWithCSS.set(word, { opacity: 0, y: "100%", x: "0%" });
+                }
+              });
             }
           });
         }, { threshold: 0.3 });
@@ -5689,7 +5701,7 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(path);
       });
 
-    }, 10000); // Wait for loading animation (roughly 10 seconds)
+    }, 100); // Wait for loading animation (roughly 10 seconds) -> now immediate
   }
 
   // Initialize scroll animations
