@@ -400,7 +400,7 @@ nav > * {
 .title h1 {
   position: relative;
   text-transform: uppercase;
-  color: #fff; /* White text for black background */
+  color: #000; /* Reverted to black as requested */
   font-family: "Druk", sans-serif;
   font-weight: 500;
   font-style: italic;
