@@ -6,81 +6,16 @@
     <link rel="shortcut icon" href="assets/img/favicon.ico">
     <title>About | Artificial Studio</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/dev/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script type="module" src="./js/dev/event-horizon.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Cinzel', serif;
-            background-color: #000000;
-            color: #fff;
-            min-height: 100vh;
-            line-height: 1.6;
+            /* Background handled by global index.css and canvas */
+            overflow-x: hidden;
         }
         
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 2rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
-        }
-        
-        .nav-logo a {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #d4af37;
-            text-decoration: none;
-            letter-spacing: 0.2em;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-        }
-        
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #fff;
-            text-decoration: none;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #d4af37;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #d4af37;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
+        /* Navigation styles inherited from index.css */
         
         /* Hero Section */
         .hero {
@@ -384,6 +319,9 @@
     </style>
 </head>
 <body>
+    <div class="grain"></div>
+    <canvas id="stage"></canvas>
+    <div class="wrapper">
     <nav>
         <div class="nav-logo">
             <a href="index.html">ARTIFICIAL STUDIO</a>
@@ -391,6 +329,7 @@
         <div class="nav-links">
             <a href="projects.html">Projects</a>
             <a href="work.html">Work</a>
+            <a href="tools.html">Tools</a>
             <a href="about.html" class="active">About</a>
             <a href="contact.html">Contact</a>
         </div>
@@ -501,5 +440,6 @@
         </div>
         <p>&copy; 2026 Artificial Studio. All Rights Reserved.</p>
     </footer>
+    </div>
 </body>
 </html>

@@ -5,625 +5,406 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/img/favicon.ico">
     <title>Work | Artificial Studio</title>
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="./css/dev/index.css">
+    
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* Page Specific Overrides */
         body {
-            font-family: 'Cinzel', serif;
-            background-color: #000000;
-            color: #fff;
-            min-height: 100vh;
-            line-height: 1.6;
+            background-color: #000;
+            overflow-x: hidden;
         }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 2rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
-        }
-        
-        .nav-logo a {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #d4af37;
-            text-decoration: none;
-            letter-spacing: 0.2em;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-        }
-        
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #fff;
-            text-decoration: none;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
+
+        /* Ensure content is above canvas */
+        .wrapper {
             position: relative;
+            z-index: 2;
         }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #d4af37;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #d4af37;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
+
+        /* Hero */
         .hero {
-            min-height: 60vh;
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 10rem 4rem 4rem;
-            background: linear-gradient(180deg, #000000 0%, #030213 100%);
+            padding: 12rem 2rem 6rem;
             position: relative;
-            overflow: hidden;
         }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%);
-            animation: heroGlow 6s ease-in-out infinite;
-        }
-        
-        @keyframes heroGlow {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .hero-badge {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            font-size: 0.7rem;
-            letter-spacing: 0.3em;
-            color: #8B5CF6;
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 2rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-        
+
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 700;
-            letter-spacing: 0.1em;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff 0%, #8B5CF6 50%, #D946EF 100%);
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-shadow: 0 0 30px rgba(165, 180, 252, 0.3);
         }
-        
+
         .hero p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Manifesto Section */
-        .manifesto-section {
-            padding: 6rem 4rem;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .manifesto-section h2 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: #d4af37;
-            margin-bottom: 2rem;
-            letter-spacing: 0.1em;
-        }
-        
-        .manifesto-text {
+            font-family: 'Inter', sans-serif;
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.75);
-            line-height: 2;
-            margin-bottom: 2rem;
-        }
-        
-        .manifesto-highlight {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #fff;
-            padding: 2rem;
-            border-left: 3px solid #8B5CF6;
-            background: linear-gradient(90deg, rgba(139, 92, 246, 0.1), transparent);
-            text-align: left;
-            margin: 3rem 0;
-        }
-        
-        /* Architecture Section */
-        .architecture-section {
-            padding: 8rem 4rem;
-            background: linear-gradient(180deg, #0f0f0f 0%, #030213 100%);
-            border-top: 1px solid rgba(139, 92, 246, 0.1);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-        }
-        
-        .architecture-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-        
-        .architecture-header h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #d4af37;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-        }
-        
-        .architecture-header p {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
             max-width: 600px;
+            line-height: 1.6;
             margin: 0 auto;
         }
-        
-        .architecture-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #d4af37;
+            margin-bottom: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Sections */
+        .work-section {
+            padding: 8rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        
-        .arch-step {
+
+        .section-header {
             text-align: center;
-            padding: 3rem 2rem;
-            background: linear-gradient(145deg, rgba(139, 92, 246, 0.05), transparent);
-            border: 1px solid rgba(139, 92, 246, 0.1);
-            border-radius: 1rem;
-            transition: all 0.4s ease;
-            position: relative;
+            margin-bottom: 6rem;
         }
-        
-        .arch-step::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #8B5CF6, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .arch-step:hover {
-            transform: translateY(-10px);
-            border-color: rgba(139, 92, 246, 0.3);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
-        }
-        
-        .arch-step:hover::before {
-            opacity: 1;
-        }
-        
-        .step-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .arch-step h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #8B5CF6;
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #fff;
             margin-bottom: 1rem;
-            letter-spacing: 0.1em;
         }
-        
-        .arch-step p {
-            font-size: 0.9rem;
+
+        .section-header p {
             color: rgba(255, 255, 255, 0.6);
-            line-height: 1.8;
+            font-family: 'Inter', sans-serif;
         }
-        
-        /* Outcome Section */
-        .outcome-section {
-            padding: 6rem 4rem;
-            max-width: 1000px;
-            margin: 0 auto;
+
+        /* Architecture Grid */
+        .arch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
-        
-        .outcome-header {
+
+        .arch-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+            border-radius: 1rem;
             text-align: center;
-            margin-bottom: 4rem;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
         }
-        
-        .outcome-header h2 {
-            font-size: 2rem;
-            font-weight: 600;
+
+        .arch-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .arch-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 2rem;
             color: #d4af37;
-            letter-spacing: 0.1em;
         }
-        
+
+        .arch-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .arch-card p {
+            font-family: 'Inter', sans-serif;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Outcome Grid */
         .outcome-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 4rem 0;
         }
-        
+
         .outcome-item {
             text-align: center;
-            padding: 2rem;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            border-radius: 0.5rem;
+            opacity: 0;
+            transform: translateY(20px);
         }
-        
-        .outcome-check {
-            font-size: 2rem;
-            color: #8B5CF6;
+
+        .outcome-item h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .check-icon {
+            color: #d4af37;
+            width: 32px;
+            height: 32px;
             margin-bottom: 1rem;
         }
-        
-        .outcome-item h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #fff;
-            letter-spacing: 0.1em;
-        }
-        
-        /* Tech Section */
-        .tech-section {
-            padding: 6rem 4rem;
-            background: #0f0f0f;
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
-        }
-        
-        .tech-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .tech-header h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #d4af37;
-            letter-spacing: 0.1em;
-        }
-        
+
+        /* Tech Tags */
         .tech-tags {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 1rem;
-            max-width: 800px;
-            margin: 0 auto;
         }
-        
+
         .tech-tag {
             padding: 0.75rem 1.5rem;
-            font-size: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             color: rgba(255, 255, 255, 0.8);
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: 0.25rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            padding: 8rem 4rem;
-            text-align: center;
-            background: linear-gradient(180deg, #030213 0%, #0a0a0a 100%);
-        }
-        
-        .cta-section h2 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            letter-spacing: 0.1em;
-        }
-        
-        .cta-subtitle {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 3rem;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 1.25rem 2.5rem;
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #fff;
-            background: linear-gradient(135deg, #8B5CF6, #D946EF);
-            border: none;
-            text-decoration: none;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
             transition: all 0.3s ease;
-            border-radius: 0.25rem;
         }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
+
+        .tech-tag:hover {
+            background: #fff;
+            color: #000;
         }
-        
-        .cta-button-secondary {
-            background: transparent;
-            border: 1px solid rgba(139, 92, 246, 0.5);
+
+        /* Manifesto */
+        .manifesto-box {
+            border-left: 2px solid #d4af37;
+            padding: 2rem 0 2rem 3rem;
+            margin: 4rem auto;
+            max-width: 800px;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.05), transparent);
         }
-        
-        .cta-button-secondary:hover {
-            background: rgba(139, 92, 246, 0.1);
+
+        .manifesto-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            font-style: italic;
         }
-        
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .contact-item a {
-            color: #8B5CF6;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .contact-item a:hover {
-            color: #D946EF;
-        }
-        
-        /* Footer */
-        footer {
-            padding: 3rem 4rem;
-            text-align: center;
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
-        }
-        
-        footer p {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 0.1em;
-        }
-        
-        /* Responsive */
+
         @media (max-width: 768px) {
-            nav {
-                padding: 1.5rem 2rem;
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-            
-            .nav-links {
-                gap: 1.5rem;
-            }
-            
-            .nav-links a {
-                font-size: 0.7rem;
-            }
-            
-            .hero {
-                padding: 12rem 2rem 4rem;
-            }
-            
-            .manifesto-section {
-                padding: 4rem 2rem;
-            }
-            
-            .architecture-section {
-                padding: 4rem 2rem;
-            }
-            
-            .architecture-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .outcome-section {
-                padding: 4rem 2rem;
-            }
-            
             .outcome-grid {
                 grid-template-columns: 1fr;
+                gap: 3rem;
             }
-            
-            .tech-section {
-                padding: 4rem 2rem;
-            }
-            
-            .cta-section {
-                padding: 4rem 2rem;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 1rem;
+            .hero {
+                padding-top: 8rem;
             }
         }
     </style>
+    
+    <!-- Scripts -->
+    <script type="module" src="./js/dev/event-horizon.js"></script>
 </head>
 <body>
-    <nav>
-        <div class="nav-logo">
-            <a href="index.html">ARTIFICIAL STUDIO</a>
-        </div>
-        <div class="nav-links">
-            <a href="projects.html">Projects</a>
-            <a href="work.html" class="active">Work</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </div>
-    </nav>
+    <!-- Background System -->
+    <div class="grain"></div>
+    <canvas id="stage"></canvas>
 
-    <section class="hero">
-        <div class="hero-content">
-            <img src="assets/steady_pulse_ai_logo.jpg" alt="Steady Pulse AI" style="width: 180px; height: 180px; border-radius: 1.5rem; margin-bottom: 2rem; box-shadow: 0 20px 60px rgba(139, 92, 246, 0.4);">
-            <span class="hero-badge">The AI-Led Era is Here</span>
-            <h1>STEADY PULSE AI</h1>
-            <p>A Neural Network designed to understand context, not just keywords. Built at the architectural level.</p>
-        </div>
-    </section>
+    <div class="wrapper">
+        <!-- Consistent Nav -->
+        <nav>
+            <div class="links">
+                <a href="projects.html">Projects</a>
+                <a href="work.html" style="color: #fff; opacity: 1;">Work</a>
+            </div>
+            <div class="nav-logo">
+                <a href="index.html">ARTIFICIAL STUDIO</a>
+            </div>
+            <div class="links">
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
 
-    <section class="manifesto-section">
-        <h2>The Linear Approach to Growth is Dead</h2>
-        <p class="manifesto-text">
-            We analyzed the workflows of top growth agencies. The data revealed a critical inefficiency. 
-            Founders are burning cognitive bandwidth acting as "human middleware"—copy-pasting between website data, 
-            prompt interfaces, and LinkedIn analytics.
-        </p>
-        <div class="manifesto-highlight">
-            "In 2026, you don't need better templates. You need a system that ingests your Core Values and business DNA 
-            and maps it to the algorithm's pulse."
-        </div>
-        <p class="manifesto-text">
-            We didn't build another "AI wrapper." We built a Complex AI Architecture trained with neural networks, 
-            deep learning, and LinkedIn profile analytics for accurate, personalized results with the blend of human touch.
-        </p>
-    </section>
+        <!-- Hero -->
+        <section class="hero">
+            <img src="assets/steady_pulse_ai_logo.jpg" alt="Steady Pulse AI" style="width: 120px; height: 120px; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 0 50px rgba(255,255,255,0.1);">
+            <div class="hero-badge">Architectural Intelligence</div>
+            <h1 data-reveal>STEADY PULSE AI</h1>
+            <p data-reveal>A Neural Network designed to understand context, not just keywords.<br>Built at the architectural level.</p>
+        </section>
 
-    <section class="architecture-section">
-        <div class="architecture-header">
-            <h2>How the SteadyPulse Architecture Works</h2>
-            <p>A system that thinks as deeply as you do</p>
-        </div>
-        <div class="architecture-grid">
-            <div class="arch-step">
-                <div class="step-icon">🧠</div>
-                <h3>Deep Ingestion</h3>
-                <p>The system consumes your entire digital footprint—Website, Services, Unique Selling Propositions. It doesn't guess what you do; it learns who you are.</p>
+        <!-- Manifesto -->
+        <section class="work-section">
+            <div class="manifesto-box" data-reveal>
+                <p class="manifesto-text">"In 2026, you don't need better templates. You need a system that ingests your Core Values and business DNA and maps it to the algorithm's pulse."</p>
             </div>
-            <div class="arch-step">
-                <div class="step-icon">📡</div>
-                <h3>Signal Matching</h3>
-                <p>It cross-references your "Voice DNA" against real-time algorithmic ranking signals. The Signal meets The Source.</p>
+            <div style="text-align: center; max-width: 700px; margin: 0 auto; color: rgba(255,255,255,0.7); line-height: 1.8;">
+                <p>We didn't build another "AI wrapper." We built a Complex AI Architecture trained with neural networks, deep learning, and LinkedIn profile analytics for accurate, personalized results with the blend of human touch.</p>
             </div>
-            <div class="arch-step">
-                <div class="step-icon">⚡</div>
-                <h3>System 2 Output</h3>
-                <p>Generates hyper-personalized, formatted assets that maximize dwell time. Content that actually sounds like you.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="outcome-section">
-        <div class="outcome-header">
-            <h2>The Outcome</h2>
-        </div>
-        <div class="outcome-grid">
-            <div class="outcome-item">
-                <div class="outcome-check">◆</div>
-                <h3>Zero Context Switching</h3>
+        <!-- Architecture -->
+        <section class="work-section">
+            <div class="section-header">
+                <h2>System Architecture</h2>
+                <p>A system that thinks as deeply as you do</p>
             </div>
-            <div class="outcome-item">
-                <div class="outcome-check">◆</div>
-                <h3>Zero Hallucinated Advice</h3>
-            </div>
-            <div class="outcome-item">
-                <div class="outcome-check">◆</div>
-                <h3>100% Signal-to-Market Fit</h3>
-            </div>
-        </div>
-    </section>
+            
+            <div class="arch-grid">
+                <!-- Card 1 -->
+                <div class="arch-card" data-reveal>
+                    <svg class="arch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2z"/>
+                        <path d="M12 6v6l4 2"/>
+                        <circle cx="12" cy="12" r="3" stroke-width="1"/>
+                    </svg>
+                    <h3>Deep Ingestion</h3>
+                    <p>The system consumes your entire digital footprint. It doesn't guess what you do; it learns who you are.</p>
+                </div>
 
-    <section class="tech-section">
-        <div class="tech-header">
-            <h2>Built With</h2>
-        </div>
-        <div class="tech-tags">
-            <span class="tech-tag">Neural Networks</span>
-            <span class="tech-tag">Deep Learning</span>
-            <span class="tech-tag">LinkedIn Analytics</span>
-            <span class="tech-tag">Complex AI Algorithms</span>
-            <span class="tech-tag">Human Touch</span>
-        </div>
-    </section>
+                <!-- Card 2 -->
+                <div class="arch-card" data-reveal style="transition-delay: 0.1s;">
+                    <svg class="arch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"/>
+                    </svg>
+                    <h3>Signal Matching</h3>
+                    <p>Cross-references your "Voice DNA" against real-time algorithmic ranking signals. The Signal meets The Source.</p>
+                </div>
 
-    <section class="cta-section">
-        <h2>Stop Renting Your Leverage</h2>
-        <p class="cta-subtitle">Start owning a system that thinks as deeply as you do.</p>
-        <div class="cta-buttons">
-            <a href="https://steadypulseai.vercel.app/" target="_blank" class="cta-button">Explore the Engine</a>
-            <a href="mailto:SteadyPulse.ai@proton.me" class="cta-button cta-button-secondary">Get in Touch</a>
-        </div>
-        <div class="contact-info">
-            <div class="contact-item">
-                📧 <a href="mailto:SteadyPulse.ai@proton.me">SteadyPulse.ai@proton.me</a>
+                <!-- Card 3 -->
+                <div class="arch-card" data-reveal style="transition-delay: 0.2s;">
+                    <svg class="arch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                    <h3>System 2 Output</h3>
+                    <p>Generates hyper-personalized, formatted assets that maximize dwell time. Content that actually sounds like you.</p>
+                </div>
             </div>
-            <div class="contact-item">
-                📞 <a href="tel:+917099580081">+91 7099580081</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <p>&copy; 2026 Artificial Studio. All Rights Reserved.</p>
-    </footer>
+        <!-- Outcome -->
+        <section class="work-section">
+            <div class="section-header">
+                <h2>The Outcome</h2>
+            </div>
+            <div class="outcome-grid">
+                <div class="outcome-item" data-reveal>
+                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                    <h3>Zero Context Switching</h3>
+                </div>
+                <div class="outcome-item" data-reveal style="transition-delay: 0.1s;">
+                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                    <h3>Zero Hallucinations</h3>
+                </div>
+                <div class="outcome-item" data-reveal style="transition-delay: 0.2s;">
+                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                    <h3>100% Signal-Market Fit</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="work-section">
+            <div class="section-header">
+                <h2>Built With</h2>
+            </div>
+            <div class="tech-tags">
+                <span class="tech-tag">Neural Networks</span>
+                <span class="tech-tag">Deep Learning</span>
+                <span class="tech-tag">LinkedIn Analytics</span>
+                <span class="tech-tag">Complex Algorithms</span>
+                <span class="tech-tag">System 2 Thinking</span>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section style="text-align: center; padding: 6rem 1rem;">
+            <h2 style="font-family: 'Cinzel'; font-size: 2rem; margin-bottom: 1rem;">Stop Renting Your Leverage</h2>
+            <p style="color: #888; margin-bottom: 3rem;">Start owning a system that thinks as deeply as you do.</p>
+            
+            <a href="https://steadypulseai.vercel.app/" target="_blank" 
+               style="display: inline-block; padding: 1rem 3rem; background: #fff; color: #000; font-family: 'Cinzel'; font-weight: 600; text-decoration: none; border-radius: 100px; transition: transform 0.3s;"
+               onmouseover="this.style.transform='scale(1.05)'" 
+               onmouseout="this.style.transform='scale(1)'">
+               EXPLORE THE ENGINE
+            </a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-vision">
+                <p>&copy; 2026 Artificial Studio. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Init Scroll Animations
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            gsap.utils.toArray('[data-reveal]').forEach(el => {
+                gsap.fromTo(el, 
+                    { opacity: 0, y: 50 },
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 1, 
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 80%",
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+            });
+
+            gsap.utils.toArray('.outcome-item').forEach((el, i) => {
+                gsap.to(el, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    delay: i * 0.1,
+                    scrollTrigger: {
+                        trigger: '.outcome-grid',
+                        start: "top 75%"
+                    }
+                });
+            });
+        }
+    </script>
 </body>
 </html>

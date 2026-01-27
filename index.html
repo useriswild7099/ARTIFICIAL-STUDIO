@@ -6,8 +6,9 @@
 		<link rel="shortcut icon" href="assets/img/favicon.ico">
 		<title>Artificial Studio | The Future Ecosystem</title>
 		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-		<script type="module" crossorigin="" src="./js/dev/index.js"></script>
 		<link rel="stylesheet" href="./css/dev/index.css">
+		<script type="module" crossorigin="" src="./js/dev/index.js"></script>
+		<script type="module" src="./js/dev/event-horizon.js"></script>
 		<style>
 			/* Silver Steel Shining Animation for About Section */
 			.about-text-manifesto {
@@ -142,12 +143,15 @@
 					height: 50%;
 					opacity: 0.5 !important;
 					mask-image: none !important; /* Remove heavy masking on mobile */
-					-webkit-mask-image: none !important;
 				}
 			}
 		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 	</head>
 	<body>
+		<div class="grain"></div>
+		<canvas id="stage"></canvas>
 		<div class="wrapper">
 			<main class="home">
 				<div class="overlay">
@@ -207,6 +211,7 @@
 					<div class="links">
 						<a href="projects.html">Projects</a>
 						<a href="work.html">Work</a>
+						<a href="tools.html">Tools</a>
 					</div>
 					<div class="nav-logo">
 						<a href="index.html">ARTIFICIAL STUDIO</a>
@@ -278,8 +283,8 @@
 					</div>
 				</div>
 				<!-- Decorative SVG -->
-				<svg class="section-decoration" viewBox="0 0 200 200" preserveAspectRatio="none">
-					<path class="decoration-path" d="M0,100 Q50,50 100,100 T200,100" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+				<svg class="section-decoration" viewBox="0 0 200 200" preserveAspectRatio="none" style="filter: invert(1); opacity: 0.2;">
+					<path class="decoration-path" d="M0,100 Q50,50 100,100 T200,100" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
 				</svg>
 			</section>
 
@@ -343,8 +348,8 @@
 					</a>
 				</div>
 				<div style="text-align: center; margin-top: 3rem;">
-					<p style="color: rgba(0,0,0,0.6); font-size: 0.85rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.8;">A Complex AI Architecture trained with neural networks and deep learning. Ingests your business DNA and maps it to the algorithm's pulse.</p>
-					<a href="https://steadypulseai.vercel.app/" target="_blank" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #8B5CF6, #D946EF); color: #fff; text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-family: inherit;">Explore the Engine →</a>
+					<p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.8;">A Complex AI Architecture trained with neural networks and deep learning. Ingests your business DNA and maps it to the algorithm's pulse.</p>
+					<a href="https://steadypulseai.vercel.app/" target="_blank" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #8B5CF6, #D946EF); color: #fff; text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-family: inherit; border-radius: 4px; transition: transform 0.3s ease;">Explore the Engine →</a>
 				</div>
 			</section>
 
@@ -392,11 +397,11 @@
 					</div>
 				</div>
 				<!-- Footer -->
-				<footer class="site-footer">
+				<footer class="site-footer" style="padding: 4rem 2rem; text-align: center; background: #000; border-top: 1px solid rgba(255,255,255,0.1);">
 					<div class="footer-vision">
 						<p class="about-text-manifesto" style="max-width: 800px; margin: 0 auto 3rem; font-size: 1rem;">Our philosophy is rooted in the audacious pursuit of symbiosis: weaving our projects into a seamless ecosystem where each innovation amplifies the others. We don't just compete with the titans of Big Tech—we aspire to eclipse them, building intelligent realms that empower humanity's next leap, where AI isn't a tool, but an ever-growing extension of collective ambition.</p>
 					</div>
-					<p>&copy; 2026 Artificial Studio. All rights reserved.</p>
+					<p style="color: rgba(255,255,255,0.5); font-family: 'Akkurat Mono', monospace; font-size: 0.7rem;">&copy; 2026 Artificial Studio. All rights reserved.</p>
 				</footer>
 			</section>
 		</div>
