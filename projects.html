@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Artificial Studio is a deep-tech product development hub building interconnected, AI-driven software ecosystems for founders and enterprises.">
+    <meta name="keywords" content="Artificial Studio, AI Startup, AI Architecture, Deep Tech, Enterprise Software, Neural Networks">
+    <meta name="author" content="Artificial Studio">
     <link rel="shortcut icon" href="assets/img/favicon.ico">
     <title>Projects | Artificial Studio</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -316,7 +319,10 @@
                 <p>${project.description || 'A visionary project redefining the boundaries of what is possible.'}</p>
                 <div class="card-meta">
                     <span class="meta-director">Dir. ${project.director.split('//')[0].trim()}</span>
-                    <span class="meta-location">${project.location}</span>
+                    <span class="meta-location" style="display: flex; align-items: center;">
+                        ${project.location}
+                        ${project.link && project.link !== "#" ? `<a href="${project.link}" target="_blank" style="color: #d4af37; margin-left: 10px; text-decoration: none; font-family: 'Inter', sans-serif;">GitHub ↗</a>` : ''}
+                    </span>
                 </div>
             `;
             

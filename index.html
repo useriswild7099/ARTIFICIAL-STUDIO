@@ -3,6 +3,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Artificial Studio is a deep-tech product development hub building interconnected, AI-driven software ecosystems for founders and enterprises.">
+		<meta name="keywords" content="Artificial Studio, AI Startup, AI Architecture, Deep Tech, Enterprise Software, Neural Networks">
+		<meta name="author" content="Artificial Studio">
 		<link rel="shortcut icon" href="assets/img/favicon.ico">
 		<title>Artificial Studio | The Future Ecosystem</title>
 		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -143,6 +146,37 @@
 					height: 50%;
 					opacity: 0.5 !important;
 					mask-image: none !important; /* Remove heavy masking on mobile */
+				}
+			}
+			/* Portfolio Carousel */
+			.portfolio-carousel {
+				width: 100%;
+				overflow: hidden;
+				position: relative;
+				padding: 2rem 0;
+			}
+			.portfolio-track-scrolling {
+				display: flex;
+				gap: 2rem;
+				width: max-content;
+				animation: scroll-carousel 30s linear infinite;
+			}
+			.portfolio-track-scrolling:hover {
+				animation-play-state: paused;
+			}
+			@keyframes scroll-carousel {
+				0% { transform: translateX(0); }
+				100% { transform: translateX(calc(-50% - 1rem)); } 
+			}
+			.portfolio-card-scrolling {
+				width: 350px;
+				flex-shrink: 0;
+				display: flex;
+				flex-direction: column;
+			}
+			@media (max-width: 768px) {
+				.portfolio-card-scrolling {
+					width: 280px;
 				}
 			}
 		</style>
@@ -327,29 +361,98 @@
 				<img src="./assets/img/robot_overlay.png" class="robot-corner" alt="AI Robot" data-reveal>
 			</section>
 
-			<!-- FEATURED PROJECT: STEADY PULSE AI -->
+			<!-- FEATURED PROJECTS CAROUSEL -->
 			<section class="section section-portfolio" id="portfolio">
 				<h2 class="section-title slide-from-left" data-parallax="0.2">
 					<span class="word">Featured</span>
-					<span class="word">Platform</span>
+					<span class="word">Platforms</span>
 				</h2>
-				<div class="portfolio-track">
-					<a href="https://steadypulseai.vercel.app/" target="_blank" class="portfolio-card" data-tilt style="text-decoration: none; cursor: pointer;">
-						<div class="card-image" style="background: linear-gradient(135deg, #030213, #1a0a2e); display: flex; align-items: center; justify-content: center; min-height: 300px;">
-							<div style="text-align: center; padding: 2rem;">
-								<img src="assets/img/steadypulse-logo-final.jpg" alt="Steady Pulse AI" style="max-width: 180px; height: auto; margin-bottom: 1.5rem; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-								<p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 0.2em;">NEURAL NETWORK • DEEP LEARNING</p>
+				<div class="portfolio-carousel">
+					<div class="portfolio-track-scrolling">
+						<!-- Set 1 -->
+						<a href="https://steadypulseai.vercel.app/" target="_blank" class="portfolio-card portfolio-card-scrolling" data-tilt style="text-decoration: none; cursor: pointer;">
+							<div class="card-image" style="background: linear-gradient(135deg, #030213, #1a0a2e); display: flex; align-items: center; justify-content: center; min-height: 250px;">
+								<div style="text-align: center; padding: 2rem;">
+									<img src="assets/img/steadypulse-logo-final.jpg" alt="Steady Pulse AI" style="max-width: 150px; height: auto; margin-bottom: 1.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+									<p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 0.2em;">NEURAL NETWORK</p>
+								</div>
 							</div>
-						</div>
-						<div class="card-content">
-							<h3>LinkedIn Growth Engine</h3>
-							<p>AI-powered content engine for executives. Ghost-writing, daily publishing, and audience growth strategies.</p>
-						</div>
-					</a>
+							<div class="card-content" style="flex-grow: 1;">
+								<h3>Steady Pulse AI</h3>
+								<p>AI-powered content engine for executives. Ghost-writing, daily publishing, and audience growth strategies.</p>
+							</div>
+						</a>
+
+						<a href="#" target="_blank" class="portfolio-card portfolio-card-scrolling" data-tilt style="text-decoration: none; cursor: pointer;">
+							<div class="card-image" style="background: linear-gradient(135deg, #0a192f, #112240); display: flex; align-items: center; justify-content: center; min-height: 250px;">
+								<div style="text-align: center; padding: 2rem;">
+									<h3 style="color: #fff; font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem; text-shadow: 0 5px 15px rgba(0,0,0,0.5);">ZenGuard AI</h3>
+									<p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 0.2em;">EDGE COMPUTE</p>
+								</div>
+							</div>
+							<div class="card-content" style="flex-grow: 1;">
+								<h3>Mental Health Companion</h3>
+								<p>100% local, stateless, and zer-log emotional analytics platform built for students running on Gemma 3:4B.</p>
+							</div>
+						</a>
+
+						<a href="https://moviefy-sandy.vercel.app/" target="_blank" class="portfolio-card portfolio-card-scrolling" data-tilt style="text-decoration: none; cursor: pointer;">
+							<div class="card-image" style="background: linear-gradient(135deg, #2b0f4c, #13072e); display: flex; align-items: center; justify-content: center; min-height: 250px;">
+								<div style="text-align: center; padding: 2rem;">
+									<h3 style="color: #fff; font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem; text-shadow: 0 5px 15px rgba(0,0,0,0.5);">MOVIEFY</h3>
+									<p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 0.2em;">AI CURATION</p>
+								</div>
+							</div>
+							<div class="card-content" style="flex-grow: 1;">
+								<h3>Content Curation Engine</h3>
+								<p>Transforms screen time into a career accelerator by analyzing resumes and matching them with relevant movies/series.</p>
+							</div>
+						</a>
+
+						<!-- Set 2 (Duplicate for infinite scroll) -->
+						<a href="https://steadypulseai.vercel.app/" target="_blank" class="portfolio-card portfolio-card-scrolling" data-tilt style="text-decoration: none; cursor: pointer;">
+							<div class="card-image" style="background: linear-gradient(135deg, #030213, #1a0a2e); display: flex; align-items: center; justify-content: center; min-height: 250px;">
+								<div style="text-align: center; padding: 2rem;">
+									<img src="assets/img/steadypulse-logo-final.jpg" alt="Steady Pulse AI" style="max-width: 150px; height: auto; margin-bottom: 1.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+									<p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 0.2em;">NEURAL NETWORK</p>
+								</div>
+							</div>
+							<div class="card-content" style="flex-grow: 1;">
+								<h3>Steady Pulse AI</h3>
+								<p>AI-powered content engine for executives. Ghost-writing, daily publishing, and audience growth strategies.</p>
+							</div>
+						</a>
+
+						<a href="#" target="_blank" class="portfolio-card portfolio-card-scrolling" data-tilt style="text-decoration: none; cursor: pointer;">
+							<div class="card-image" style="background: linear-gradient(135deg, #0a192f, #112240); display: flex; align-items: center; justify-content: center; min-height: 250px;">
+								<div style="text-align: center; padding: 2rem;">
+									<h3 style="color: #fff; font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem; text-shadow: 0 5px 15px rgba(0,0,0,0.5);">ZenGuard AI</h3>
+									<p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 0.2em;">EDGE COMPUTE</p>
+								</div>
+							</div>
+							<div class="card-content" style="flex-grow: 1;">
+								<h3>Mental Health Companion</h3>
+								<p>100% local, stateless, and zer-log emotional analytics platform built for students running on Gemma 3:4B.</p>
+							</div>
+						</a>
+
+						<a href="https://moviefy-sandy.vercel.app/" target="_blank" class="portfolio-card portfolio-card-scrolling" data-tilt style="text-decoration: none; cursor: pointer;">
+							<div class="card-image" style="background: linear-gradient(135deg, #2b0f4c, #13072e); display: flex; align-items: center; justify-content: center; min-height: 250px;">
+								<div style="text-align: center; padding: 2rem;">
+									<h3 style="color: #fff; font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem; text-shadow: 0 5px 15px rgba(0,0,0,0.5);">MOVIEFY</h3>
+									<p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 0.2em;">AI CURATION</p>
+								</div>
+							</div>
+							<div class="card-content" style="flex-grow: 1;">
+								<h3>Content Curation Engine</h3>
+								<p>Transforms screen time into a career accelerator by analyzing resumes and matching them with relevant movies/series.</p>
+							</div>
+						</a>
+					</div>
 				</div>
 				<div style="text-align: center; margin-top: 3rem;">
-					<p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.8;">A Complex AI Architecture trained with neural networks and deep learning. Ingests your business DNA and maps it to the algorithm's pulse.</p>
-					<a href="https://steadypulseai.vercel.app/" target="_blank" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #8B5CF6, #D946EF); color: #fff; text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-family: inherit; border-radius: 4px; transition: transform 0.3s ease;">Explore the Engine →</a>
+					<p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.8;">Sophisticated AI architectures designed from first principles. We don't build wrappers; we engineer self-sustaining cognitive ecosystems.</p>
+					<a href="projects.html" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #d4af37, #f3e5ab); color: #000; text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-family: inherit; border-radius: 4px; transition: transform 0.3s ease; font-weight: 600;">View All Projects →</a>
 				</div>
 			</section>
 
