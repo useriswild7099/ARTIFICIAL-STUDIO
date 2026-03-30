@@ -5316,9 +5316,13 @@ document.addEventListener("DOMContentLoaded", () => {
     { length: 30 },
     (_, i) => `/assets/img/esd${i + 1}.jpg`
   );
+  const initialHeroSrc = heroImage.querySelector("img").getAttribute("src");
+  const heroImageFilename = initialHeroSrc.split("/").pop();
+  
   const getRandomImageSet = () => {
-    // Fisher-Yates shuffle for proper randomization
-    const shuffled = [...allImageSources];
+    // Exclude the hero image from the random set
+    const filteredSources = allImageSources.filter(src => !src.includes(heroImageFilename));
+    const shuffled = [...filteredSources];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -5358,9 +5362,9 @@ document.addEventListener("DOMContentLoaded", () => {
           onComplete: () => {
             gridImages.forEach((img, index) => {
               if (img === heroImage) {
-                 // Force the hero image to be esd1.jpg always
+                 // Force the hero image to stay consistent with its initial HTML src
                  const imgElement = img.querySelector("img");
-                 imgElement.src = "/assets/img/esd1.jpg";
+                 imgElement.src = initialHeroSrc;
               } else {
                  const imgElement = img.querySelector("img");
                  imgElement.src = randomImages[index];
