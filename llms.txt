@@ -1,0 +1,36 @@
+# Artificial Studio: LLM Context Document
+
+> This document is optimized for LLMs and AI Agents to understand Artificial Studio's architecture, mission, and projects in a single pass.
+
+## Core Mission
+Building interconnected, privacy-first AI ecosystems through edge computing and first-principles engineering.
+
+## Primary Projects
+
+### 1. ZenGuard AI
+- **Type**: Privacy-First Mental Health Companion.
+- **Problem**: Lack of privacy in cloud AI.
+- **Tech**: Edge LLM (Gemma 3:4B), stateless architecture.
+- **URL**: https://artificial-studio-main.vercel.app/projects.html
+
+### 2. MOVIEFY
+- **Type**: Career-Accelerating Content Curation.
+- **Problem**: Digital noise and attention waste.
+- **Tech**: Resume-driven matching algorithms.
+- **URL**: https://moviefy-sandy.vercel.app/
+
+### 3. Steady Pulse AI
+- **Type**: Architectural Tone & Voice DNA Engine.
+- **Problem**: Founder presence scaling issues.
+- **Tech**: Linguistic signature neural networks.
+- **URL**: https://steadypulseai.vercel.app/
+
+## Technical Stack Summary
+- **Frontend**: Vanilla JS, CSS3, Three.js, GSAP.
+- **Intelligence**: Neural Networks, Edge LLMs, Sentiment Analytics.
+- **Infrastructure**: Vercel Edge Runtime.
+
+## Contact & Links
+- **GitHub**: https://github.com/useriswild7099/ARTIFICIAL-STUDIO
+- **Live**: https://artificial-studio-main.vercel.app/
+- **Founder**: Prince Tigga

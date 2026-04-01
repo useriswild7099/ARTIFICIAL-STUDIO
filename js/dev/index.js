@@ -5314,7 +5314,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   const allImageSources = Array.from(
     { length: 30 },
-    (_, i) => `/assets/img/esd${i + 1}.jpg`
+    (_, i) => `./assets/img/esd${i + 1}.jpg`
   );
   const initialHeroSrc = heroImage.querySelector("img").getAttribute("src");
   const heroImageFilename = initialHeroSrc.split("/").pop();
@@ -5327,7 +5327,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    return shuffled.slice(0, 9);
+    return shuffled;
+  };
+
+  const randomizeGrid = () => {
+    const initialImages = getRandomImageSet();
+    gridImages.forEach((img, index) => {
+      if (img !== heroImage) {
+        const imgElement = img.querySelector("img");
+        if (imgElement) imgElement.src = initialImages[index];
+      }
+    });
   };
   function initializeDynamicContent() {
     projectsData.forEach((project) => {
@@ -5393,6 +5403,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   function init4() {
     initializeDynamicContent();
+    randomizeGrid();
     setupInitialStates();
     createAnimationTimelines();
   }
